@@ -40,4 +40,9 @@ typedef struct		GLOBAL_GAME
 
 }					t_game;
 
+t_game				*initialize_game_struct();
+IS_OK				initialize_window(sfRenderWindow**);
+IS_OK				clean_ressource_and_close(t_game *gameme);
+IS_OK				define_wallpaper(sfSprite **, sfTexture **);
+
 #endif

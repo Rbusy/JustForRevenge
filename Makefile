@@ -1,4 +1,9 @@
-SRC=		main.c
+SRC_DIR=	./src/
+
+SRC=		main.c							\
+			$(SRC_DIR)initialize.c			\
+			$(SRC_DIR)close_game.c			\
+			$(SRC_DIR)first_scene.c			\
 
 OBJ=		$(SRC:.c=.o)
 
