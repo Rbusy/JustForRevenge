@@ -24,6 +24,7 @@ typedef struct		Window
 typedef struct		Graphic
 {
 	sfSprite		*wallpaper;
+	sfTexture		*t_wallpaper;
 
 }					t_graphic;
 
@@ -36,7 +37,6 @@ typedef struct		GLOBAL_GAME
 {
 	t_window		Window;
 	t_graphic		Graphic;
-	int patate;
 
 }					t_game;
 
