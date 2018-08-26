@@ -14,6 +14,13 @@
 # define		WINDOW					(*game).Window.window
 # define		EVENT					(*game).Window.event
 
+///////////////////////////////////////////////////////
+/*                                                   */
+/*                  Window                           */
+/*                                                   */
+///////////////////////////////////////////////////////
+
+
 typedef struct		Window
 {
 	sfRenderWindow	*window;
@@ -21,17 +28,41 @@ typedef struct		Window
 
 }					t_window;
 
+
+///////////////////////////////////////////////////////
+/*                                                   */
+/*                  Graphic                          */
+/*                                                   */
+///////////////////////////////////////////////////////
+
+
 typedef struct		Graphic
 {
-	sfSprite		*wallpaper;
-	sfTexture		*t_wallpaper;
+	sfSprite		*background;
+	sfTexture		*t_background;
+	sfSprite		*play_button;
+	sfTexture		*t_play_button;
 
 }					t_graphic;
+
+
+///////////////////////////////////////////////////////
+/*                                                   */
+/*                  Audio                            */
+/*                                                   */
+///////////////////////////////////////////////////////
 
 typedef struct		Audio
 {
 
 }					t_audio;
+
+///////////////////////////////////////////////////////
+/*                                                   */
+/*                  GLOBAL_GAME                      */
+/*                                                   */
+///////////////////////////////////////////////////////
+
 
 typedef struct		GLOBAL_GAME
 {
@@ -43,6 +74,7 @@ typedef struct		GLOBAL_GAME
 t_game				*initialize_game_struct();
 IS_OK				initialize_window(sfRenderWindow**);
 IS_OK				clean_ressource_and_close(t_game *gameme);
-IS_OK				define_wallpaper(sfSprite **, sfTexture **);
+IS_OK				load_sprite_scene_one(t_game*);
+void				display_sprite_scene_one(t_game*);
 
 #endif

@@ -6,7 +6,7 @@ IS_OK				main(void)
 
 	if ((game = initialize_game_struct()) == NULL || initialize_window(&(WINDOW)))
 		return (ERROR);
-	if (define_wallpaper(&(*game).Graphic.wallpaper, &(*game).Graphic.t_wallpaper))
+	if (load_sprite_scene_one(game))
 		return (ERROR);
 
 	sfRenderWindow_setFramerateLimit(WINDOW, 60);
@@ -20,7 +20,7 @@ IS_OK				main(void)
 		}
 		sfRenderWindow_display(WINDOW);
 		sfRenderWindow_clear(WINDOW, sfWhite);
-		sfRenderWindow_drawSprite(WINDOW, (*game).Graphic.wallpaper, NULL);
+		display_sprite_scene_one(game);
 	}
 	return (GOOD);
 }
