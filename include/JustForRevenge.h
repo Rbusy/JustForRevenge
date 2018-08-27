@@ -3,6 +3,7 @@
 
 # include		<SFML/Window.h>
 # include		<SFML/Graphics.h>
+# include		<SFML/Audio.h>
 # include		<stdlib.h>
 
 # define		BAD						42
@@ -11,8 +12,12 @@
 
 # define		IS_OK					int
 
-# define		WINDOW					(*game).Window.window
-# define		EVENT					(*game).Window.event
+# define		G_WINDOW				(*game).Window.window
+# define		G_EVENT					(*game).Window.event
+
+# define		WINDOW					(*game).Window
+# define		AUDIO					(*game).Audio
+# define		GRAPHIC					(*game).Graphic
 
 ///////////////////////////////////////////////////////
 /*                                                   */
@@ -28,6 +33,16 @@ typedef struct		Window
 
 }					t_window;
 
+///////////////////////////////////////////////////////
+/*                                                   */
+/*                  System                           */
+/*                                                   */
+///////////////////////////////////////////////////////
+
+typedef struct		System
+{
+
+}					t_system;
 
 ///////////////////////////////////////////////////////
 /*                                                   */
@@ -42,6 +57,7 @@ typedef struct		Graphic
 	sfTexture		*t_background;
 	sfSprite		*play_button;
 	sfTexture		*t_play_button;
+	sfRectangleShape*rectangle;
 
 }					t_graphic;
 
@@ -54,6 +70,7 @@ typedef struct		Graphic
 
 typedef struct		Audio
 {
+	sfMusic			*music_scene_one;
 
 }					t_audio;
 
@@ -68,13 +85,15 @@ typedef struct		GLOBAL_GAME
 {
 	t_window		Window;
 	t_graphic		Graphic;
+	t_audio			Audio;
+	t_system		System;
 
 }					t_game;
 
 t_game				*initialize_game_struct();
 IS_OK				initialize_window(sfRenderWindow**);
 IS_OK				clean_ressource_and_close(t_game *gameme);
-IS_OK				load_sprite_scene_one(t_game*);
+IS_OK				load_res_scene_one(t_game*);
 void				display_sprite_scene_one(t_game*);
 
 #endif

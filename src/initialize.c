@@ -13,7 +13,7 @@ IS_OK			initialize_window(sfRenderWindow **window)
 {
 	sfVideoMode video = {1980, 1080, 32};
 
-	*window = sfRenderWindow_create(video, "JustForRevenge", sfDefaultStyle, NULL);
+	*window = sfRenderWindow_create(video, "JustForRevenge", sfFullscreen, NULL);
 	if (!*window)
 		return (BAD);
 	return (GOOD);
