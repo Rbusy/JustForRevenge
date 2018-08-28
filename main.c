@@ -1,13 +1,18 @@
 #include <JustForRevenge.h>
 
-IS_OK				main(void)
+IS_OK				main()
 {
 	t_game *game;
 
-	if ((game = initialize_game_struct()) == NULL || initialize_window(&(G_WINDOW)))
+	if ((game = initialize_game_struct()) == NULL)
 		return (ERROR);
+
+	if (initialize_window(&(G_WINDOW)))
+		return (clean_ressource_and_close(game, ERROR));
 	if (load_res_scene_one(game))
-		return (ERROR);
+		return (clean_ressource_and_close(game, ERROR));
+	if (load_settings_page(game))
+		return (clean_ressource_and_close(game, ERROR));
 
 	sfRenderWindow_setFramerateLimit(G_WINDOW, 60);
 	sfRenderWindow_setMouseCursorVisible(G_WINDOW, sfFalse);
@@ -19,11 +24,11 @@ IS_OK				main(void)
 		while (sfRenderWindow_pollEvent(G_WINDOW, &(G_EVENT)))
 		{
 			if (G_EVENT.type == sfEvtClosed || sfKeyboard_isKeyPressed(sfKeyEscape))
-				return (clean_ressource_and_close(game));
+				return (clean_ressource_and_close(game, GOOD));
 		}
 		sfRenderWindow_display(G_WINDOW);
 		sfRenderWindow_clear(G_WINDOW, sfBlack);
-		display_sprite_scene_one(game);
+		display_scene(game);
 	}
-	return (GOOD);
+	return (clean_ressource_and_close(game, GOOD));
 }

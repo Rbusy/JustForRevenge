@@ -18,6 +18,26 @@
 # define		WINDOW					(*game).Window
 # define		AUDIO					(*game).Audio
 # define		GRAPHIC					(*game).Graphic
+# define		SYSTEM					(*game).System
+
+typedef enum
+{
+	Right           =   0,
+	RightMove       =   1,
+	Left            =   2,
+	LeftMove        =   3
+
+}					MoveCharacters;
+
+typedef enum
+{
+	SceneOne        =   1,
+	SceneTwo        =   2,
+	SceneThree      =   3,
+	SceneFor        =   4
+
+}					SceneChoice;
+
 
 ///////////////////////////////////////////////////////
 /*                                                   */
@@ -30,6 +50,7 @@ typedef struct		Window
 {
 	sfRenderWindow	*window;
 	sfEvent			event;
+	int				scene;
 
 }					t_window;
 
@@ -41,6 +62,9 @@ typedef struct		Window
 
 typedef struct		System
 {
+	sfClock			*clock_animate;
+	int				save;
+	int				movement_choice;
 
 }					t_system;
 
@@ -58,6 +82,9 @@ typedef struct		Graphic
 	sfSprite		*play_button;
 	sfTexture		*t_play_button;
 	sfRectangleShape*rectangle;
+	sfTexture		*t_settings;
+	sfSprite		*characters;
+	sfTexture		*t_characters;
 
 }					t_graphic;
 
@@ -90,10 +117,20 @@ typedef struct		GLOBAL_GAME
 
 }					t_game;
 
+///////////////////////////////////////////////////////
+/*                                                   */
+/*                  Function                         */
+/*                                                   */
+///////////////////////////////////////////////////////
+
+IS_OK				applySprite(sfSprite**, sfTexture**, char *, int, int b);
 t_game				*initialize_game_struct();
 IS_OK				initialize_window(sfRenderWindow**);
-IS_OK				clean_ressource_and_close(t_game *gameme);
+IS_OK				clean_ressource_and_close(t_game *, IS_OK);
 IS_OK				load_res_scene_one(t_game*);
-void				display_sprite_scene_one(t_game*);
+IS_OK				display_scene_one(t_game*);
+IS_OK				load_settings_page(t_game*);
+IS_OK				load_characters(t_game*);
+IS_OK				display_scene(t_game*);
 
 #endif
