@@ -11,10 +11,13 @@ t_game				*initialize_game_struct(void)
 	GRAPHIC.t_background = NULL;
 	GRAPHIC.play_button = NULL;
 	GRAPHIC.t_play_button = NULL;
+	GRAPHIC.text_play = NULL;
+	GRAPHIC.font_text_play = NULL;
 	GRAPHIC.rectangle = NULL;
 	GRAPHIC.t_settings = NULL;
 	GRAPHIC.characters = NULL;
 	GRAPHIC.t_characters = NULL;
+	GRAPHIC.settings_text = NULL;
 
 	AUDIO.music_scene_one = NULL;
 
@@ -24,6 +27,7 @@ t_game				*initialize_game_struct(void)
 
 	WINDOW.window = NULL;
 	WINDOW.scene = 1;
+	WINDOW.play_or_settings = 0;
 
 	return (game);
 }

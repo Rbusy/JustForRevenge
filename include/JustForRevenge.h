@@ -51,6 +51,7 @@ typedef struct		Window
 	sfRenderWindow	*window;
 	sfEvent			event;
 	int				scene;
+	int				play_or_settings;
 
 }					t_window;
 
@@ -79,12 +80,25 @@ typedef struct		Graphic
 {
 	sfSprite		*background;
 	sfTexture		*t_background;
+
 	sfSprite		*play_button;
 	sfTexture		*t_play_button;
+
+	sfText			*text_play;
+	sfFont			*font_text_play;
+
 	sfRectangleShape*rectangle;
 	sfTexture		*t_settings;
+
 	sfSprite		*characters;
 	sfTexture		*t_characters;
+
+	sfSprite		*settings_button;
+	sfTexture		*t_settings_button;
+	sfText			*settings_text;
+
+	sfSprite		*title;   //destroy
+	sfTexture		*t_title; //destroy
 
 }					t_graphic;
 
@@ -132,5 +146,8 @@ IS_OK				display_scene_one(t_game*);
 IS_OK				load_settings_page(t_game*);
 IS_OK				load_characters(t_game*);
 IS_OK				display_scene(t_game*);
+IS_OK				move_characters(t_game*, int);
+IS_OK				move_text(sfText*, sfRenderWindow*, int, int);
+IS_OK				move_sprite(sfSprite *, sfRenderWindow *, int, int);
 
 #endif

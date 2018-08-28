@@ -15,4 +15,5 @@ IS_OK			load_characters(t_game *game)
 {
 	if (define_character(&GRAPHIC.characters, &GRAPHIC.t_characters, &SYSTEM.clock_animate))
 		return (BAD);
+	return (GOOD);
 }
