@@ -31,4 +31,5 @@ IS_OK		move_characters(t_game *game, int choice)
 	case LeftMove:
 		break;
 	}
+	return (GOOD);
 }

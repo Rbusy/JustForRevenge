@@ -8,6 +8,9 @@ SRC=		main.c							\
 			$(SRC_DIR)display_scene.c		\
 			$(SRC_DIR)display_scene_one.c	\
 			$(SRC_DIR)f_applySprite.c		\
+			$(SRC_DIR)move_characters.c		\
+			$(SRC_DIR)load_characters.c		\
+			$(SRC_DIR)move.c				\
 
 OBJ=		$(SRC:.c=.o)
 

@@ -1,5 +1,15 @@
 #include <JustForRevenge.h>
 
+/*static IS_OK	define_settings_text(sfText **text, sfRectangleShape **rect)
+{
+	*text = sfText_create();
+	sfText_setString(*text, "Kebab");
+
+
+	return (GOOD);
+}*/
+
+
 static IS_OK	define_settings_page(sfRenderWindow *window, sfRectangleShape **rectangle, sfTexture **texture)
 {
 	sfVector2u numbers = sfRenderWindow_getSize(window);
