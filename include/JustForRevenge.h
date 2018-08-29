@@ -52,6 +52,7 @@ typedef struct		Window
 	sfEvent			event;
 	int				scene;
 	int				play_or_settings;
+	int				open_settings;
 
 }					t_window;
 
@@ -64,8 +65,11 @@ typedef struct		Window
 typedef struct		System
 {
 	sfClock			*clock_animate;
+	sfClock			*clock_sword;
 	int				save;
+	int				save_clock_sword;
 	int				movement_choice;
+	sfTime			pause;
 
 }					t_system;
 
@@ -97,8 +101,11 @@ typedef struct		Graphic
 	sfTexture		*t_settings_button;
 	sfText			*settings_text;
 
-	sfSprite		*title;   //destroy
-	sfTexture		*t_title; //destroy
+	sfSprite		*title;
+	sfTexture		*t_title;
+
+	sfSprite		*sword;
+	sfTexture		*t_sword;
 
 }					t_graphic;
 
@@ -138,8 +145,9 @@ typedef struct		GLOBAL_GAME
 ///////////////////////////////////////////////////////
 
 IS_OK				applySprite(sfSprite**, sfTexture**, char *, int, int b);
-t_game				*initialize_game_struct();
-IS_OK				initialize_window(sfRenderWindow**);
+IS_OK				applyMusic(sfMusic **, char*);
+IS_OK				initialize_game_struct(t_game **game);
+IS_OK				create_window(sfRenderWindow**);
 IS_OK				clean_ressource_and_close(t_game *, IS_OK);
 IS_OK				load_res_scene_one(t_game*);
 IS_OK				display_scene_one(t_game*);
@@ -149,5 +157,10 @@ IS_OK				display_scene(t_game*);
 IS_OK				move_characters(t_game*, int);
 IS_OK				move_text(sfText*, sfRenderWindow*, int, int);
 IS_OK				move_sprite(sfSprite *, sfRenderWindow *, int, int);
+IS_OK				display_settings(t_game*);
+IS_OK				animate_scene_one(t_game *game);
+IS_OK				window_display_and_clear(sfRenderWindow*);
+IS_OK				do_event(t_game *game);
+IS_OK				do_event_scene_one(t_game *game);
 
 #endif

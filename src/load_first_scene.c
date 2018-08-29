@@ -1,76 +1,75 @@
 #include <JustForRevenge.h>
 
-static IS_OK	apply_music(sfMusic **music, char *str)
+static	IS_OK	load_buttons(t_game *game)
 {
-	*music = sfMusic_createFromFile(str);
-	if (!*music)
+	if (applySprite(&GRAPHIC.play_button, &GRAPHIC.t_play_button, "./res/Button/Play2.png", 158, 151))
+		return (BAD);
+	if (applySprite(&GRAPHIC.settings_button, &GRAPHIC.t_settings_button, "./res/Button/settings.png", 200, 200))
+		return (BAD);
+	if (move_sprite(GRAPHIC.play_button, G_WINDOW, 200, 142))
+		return (BAD);
+	if (move_sprite(GRAPHIC.settings_button, G_WINDOW, -20, 142))
 		return (BAD);
 	return (GOOD);
 }
 
-static IS_OK	define_wallpaper(sfSprite  **wallpaper, sfTexture **t_wallpaper)
+static IS_OK	load_music(t_game *game)
 {
-	if (applySprite(wallpaper, t_wallpaper, "./res/Wallpaper/Wallpaper2.jpg", 1980, 1080))
+	if (applyMusic(&AUDIO.music_scene_one, "./res/Musique/musique1.ogg"))
+		return (BAD);
+	sfMusic_play(AUDIO.music_scene_one);
+	sfMusic_setVolume(AUDIO.music_scene_one, 30);
+	return (GOOD);
+}
+
+static IS_OK	load_background(t_game *game)
+{
+	if (applySprite(&GRAPHIC.background, &GRAPHIC.t_background, "./res/Wallpaper/Wallpaper2.jpg", 1980, 1080))
 		return (BAD);
 	return (GOOD);
 }
 
-static IS_OK	define_play_button(sfSprite **button, sfTexture **t_button)
+static IS_OK	load_text(t_game *game)
 {
-	if (applySprite(button, t_button, "./res/Button/Play2.png", 158, 151))
+	GRAPHIC.text_play = sfText_create();
+
+	sfText_setCharacterSize(GRAPHIC.text_play, 100);
+	sfText_setStyle(GRAPHIC.text_play, sfTextItalic);
+	sfText_setColor(GRAPHIC.text_play, sfWhite);
+	GRAPHIC.font_text_play = sfFont_createFromFile("./res/Typo/Prout.ttf");
+	sfText_setFont(GRAPHIC.text_play, GRAPHIC.font_text_play);
+	if (move_text(GRAPHIC.text_play, G_WINDOW, 150, 100))
 		return (BAD);
 	return (GOOD);
 }
 
-static IS_OK	define_settings_button(sfSprite **sprite, sfTexture **texture)
+static IS_OK	load_title(t_game *game)
 {
-	if (applySprite(sprite, texture, "./res/Button/settings.png", 200, 200))
+	if (applySprite(&GRAPHIC.title, &GRAPHIC.t_title, "./res/Typo/Title.png", 1531, 352))
+		return (BAD);
+	if (move_sprite(GRAPHIC.title, G_WINDOW, 760, -350))
 		return (BAD);
 	return (GOOD);
 }
 
-static IS_OK	define_play_text(sfText **text, sfFont **font)
+static IS_OK	load_sword(t_game *game)
 {
-	*text = sfText_create();
+	sfIntRect rect = {0, 0, 500, 108};
 
-	sfText_setString(*text, "Play");
-	sfText_setCharacterSize(*text, 100);
-	sfText_setStyle(*text, sfTextItalic);
-	sfText_setColor(*text, sfWhite);
-	*font = sfFont_createFromFile("./res/Typo/Assassin.ttf");
-	sfText_setFont(*text, *font);
-	return (GOOD);
-}
-
-static IS_OK	define_title(sfSprite **sprite, sfTexture **texture)
-{
-	if (applySprite(sprite, texture, "./res/Typo/typo1.png", 1028, 419))
+	if (applySprite(&GRAPHIC.sword, &GRAPHIC.t_sword, "./res/Sword3.png", 500, 317))
+		return (BAD);
+	if (move_sprite(GRAPHIC.sword, G_WINDOW, 268, 117))
+		return (BAD);
+	sfSprite_setTextureRect(GRAPHIC.sword, rect);
+	SYSTEM.clock_sword = sfClock_create();
+	if (!SYSTEM.clock_sword)
 		return (BAD);
 	return (GOOD);
 }
 
 IS_OK			load_res_scene_one(t_game *game)
 {
-	if (define_wallpaper(&GRAPHIC.background, &GRAPHIC.t_background))
+	if (load_buttons(game) || load_music(game) || load_background(game) || load_text(game) || load_title(game) || load_sword(game))
 		return (BAD);
-	if (define_play_button(&GRAPHIC.play_button, &GRAPHIC.t_play_button))
-		return (BAD);
-	if (define_settings_button(&GRAPHIC.settings_button, &GRAPHIC.t_settings_button))
-		return (BAD);
-	if (apply_music(&AUDIO.music_scene_one, "./res/Musique/musique1.ogg"))
-		return (BAD);
-	if (move_sprite(GRAPHIC.play_button, G_WINDOW, 200, 142))
-		return (BAD);
-	if (move_sprite(GRAPHIC.settings_button, G_WINDOW, -20, 142))
-		return (BAD);
-	if (define_play_text(&GRAPHIC.text_play, &GRAPHIC.font_text_play))
-		return (BAD);
-	if (move_text(GRAPHIC.text_play, G_WINDOW, 150, -50))
-		return (BAD);
-
-	if (define_title(&GRAPHIC.title, &GRAPHIC.t_title))
-		return (BAD);
-//	if (move_sprite(GRAPHIC.title, G_WINDOW, 0, 150))
-//		return (BAD);
 	return (GOOD);
 }

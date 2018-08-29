@@ -1,12 +1,13 @@
 #include <JustForRevenge.h>
 
-IS_OK		display_scene(t_game *game)
+IS_OK		do_event(t_game *game)
 {
+	if (G_EVENT.type == sfEvtClosed || sfKeyboard_isKeyPressed(sfKeyEscape))
+		return (BAD);
 	switch (WINDOW.scene)
 	{
 	case SceneOne:
-		display_scene_one(game);
-		animate_scene_one(game);
+		do_event_scene_one(game);
 		break;
 	case SceneTwo:
 		break;
