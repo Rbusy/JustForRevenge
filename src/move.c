@@ -1,6 +1,6 @@
 #include <JustForRevenge.h>
 
-IS_OK	move_text(sfText *text, sfRenderWindow *window, int a, int b)
+IS_OK	setPositionText(sfText *text, sfRenderWindow *window, float a, float b)
 {
 	sfVector2u numbers = sfRenderWindow_getSize(window);
 	sfVector2f move;
@@ -13,7 +13,7 @@ IS_OK	move_text(sfText *text, sfRenderWindow *window, int a, int b)
 	return (GOOD);
 }
 
-IS_OK	move_sprite(sfSprite *button, sfRenderWindow *window, int a, int b)
+IS_OK	setPositionSprite(sfSprite *button, sfRenderWindow *window, float a, float b)
 {
 	sfVector2u numbers = sfRenderWindow_getSize(window);
 	sfVector2f move;
@@ -23,5 +23,15 @@ IS_OK	move_sprite(sfSprite *button, sfRenderWindow *window, int a, int b)
 	move.x = numbers.x / 2 - (a);
 	move.y = numbers.y / 2 + (b);
 	sfSprite_setPosition(button, move);
+	return (GOOD);
+}
+
+IS_OK	moveSprite(sfSprite *sprite, float a, float b)
+{
+	sfVector2f offset;
+
+	offset.x = a;
+	offset.y = b;
+	sfSprite_move(sprite, offset);
 	return (GOOD);
 }

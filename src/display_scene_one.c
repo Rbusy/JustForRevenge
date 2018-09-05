@@ -21,7 +21,7 @@ IS_OK			display_scene_one(t_game *game)
 	}
 	sfRenderWindow_drawText(G_WINDOW, GRAPHIC.text_play, NULL);
 	sfRenderWindow_drawSprite(G_WINDOW, GRAPHIC.sword, NULL);
-	if (WINDOW.open_settings)
-		sfRenderWindow_drawRectangleShape(G_WINDOW, GRAPHIC.rectangle, NULL);
+	if (display_settings(game))
+		return (BAD);
 	return (GOOD);
 }

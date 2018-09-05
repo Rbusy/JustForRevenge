@@ -7,13 +7,13 @@ IS_OK				main()
 	if (initialize_game_struct(&game))
 		return (ERROR);
 	if (create_window(&(G_WINDOW)))
-		return (clean_ressource_and_close(game, ERROR));
+		return (clean_ressource_and_close(game, 80));
 	if (load_res_scene_one(game))
-		return (clean_ressource_and_close(game, ERROR));
+		return (clean_ressource_and_close(game, 81));
 	if (load_settings_page(game))
-		return (clean_ressource_and_close(game, ERROR));
+		return (clean_ressource_and_close(game, 82));
 	if (load_characters(game))
-		return (clean_ressource_and_close(game, ERROR));
+		return (clean_ressource_and_close(game, 83));
 
 	while (sfRenderWindow_isOpen(G_WINDOW))
 	{

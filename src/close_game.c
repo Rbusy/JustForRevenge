@@ -41,20 +41,11 @@ static void		clear_graphic_scene_one(t_game *game)
 	if (GRAPHIC.font_text_play)
 		sfFont_destroy(GRAPHIC.font_text_play);
 
-	if (GRAPHIC.rectangle)
-		sfRectangleShape_destroy(GRAPHIC.rectangle);
-	if (GRAPHIC.t_settings)
-		sfTexture_destroy(GRAPHIC.t_settings);
-
 	if (GRAPHIC.characters)
 		sfSprite_destroy(GRAPHIC.characters);
 	if (GRAPHIC.t_characters)
 		sfTexture_destroy(GRAPHIC.t_characters);
 
-	if (GRAPHIC.settings_button)
-		sfSprite_destroy(GRAPHIC.settings_button);
-	if (GRAPHIC.t_settings_button)
-		sfTexture_destroy(GRAPHIC.t_settings_button);
 	if (GRAPHIC.settings_text)
 		sfText_destroy(GRAPHIC.settings_text);
 
@@ -69,6 +60,74 @@ static void		clear_graphic_scene_one(t_game *game)
 		sfTexture_destroy(GRAPHIC.t_sword);
 }
 
+static void		clear_settings(t_game *game)
+{
+	if (GRAPHIC.rectangle)
+		sfRectangleShape_destroy(GRAPHIC.rectangle);
+	if (GRAPHIC.t_settings)
+		sfTexture_destroy(GRAPHIC.t_settings);
+	if (GRAPHIC.settings_sound)
+		sfText_destroy(GRAPHIC.settings_sound);
+	if (GRAPHIC.global_settings)
+		sfText_destroy(GRAPHIC.global_settings);
+	if (GRAPHIC.settings_resolution)
+		sfText_destroy(GRAPHIC.settings_resolution);
+	if (GRAPHIC.settings_fullscreen)
+		sfText_destroy(GRAPHIC.settings_fullscreen);
+	if (GRAPHIC.settings_fps)
+		sfText_destroy(GRAPHIC.settings_fps);
+	if (GRAPHIC.settings_vsync)
+		sfText_destroy(GRAPHIC.settings_vsync);
+	if (GRAPHIC.settings_bar)
+		sfSprite_destroy(GRAPHIC.settings_bar);
+	if (GRAPHIC.copy_settings_bar)
+		sfSprite_destroy(GRAPHIC.copy_settings_bar);
+	if (GRAPHIC.copy__settings_bar)
+		sfSprite_destroy(GRAPHIC.copy__settings_bar);
+	if (GRAPHIC.copy___settings_bar)
+		sfSprite_destroy(GRAPHIC.copy___settings_bar);
+	if (GRAPHIC.t_settings_bar)
+		sfTexture_destroy(GRAPHIC.t_settings_bar);
+	if (GRAPHIC.copy_sword_bar)
+		sfSprite_destroy(GRAPHIC.copy_sword_bar);
+	if (GRAPHIC.copy__sword_bar)
+		sfSprite_destroy(GRAPHIC.copy__sword_bar);
+	if (GRAPHIC.copy___sword_bar)
+		sfSprite_destroy(GRAPHIC.copy___sword_bar);
+	if (GRAPHIC.sword_bar)
+		sfSprite_destroy(GRAPHIC.sword_bar);
+	if (GRAPHIC.t_sword_bar)
+		sfTexture_destroy(GRAPHIC.t_sword_bar);
+	if (GRAPHIC.check_box)
+		sfSprite_destroy(GRAPHIC.check_box);
+	if (GRAPHIC.t_check_box)
+		sfTexture_destroy(GRAPHIC.t_check_box);
+	if (GRAPHIC.copy_check_box)
+		sfSprite_destroy(GRAPHIC.copy_check_box);
+	if (GRAPHIC.settings_button)
+		sfSprite_destroy(GRAPHIC.settings_button);
+	if (GRAPHIC.t_settings_button)
+		sfTexture_destroy(GRAPHIC.t_settings_button);
+	if (GRAPHIC.copy_settings_button)
+		sfSprite_destroy(GRAPHIC.copy_settings_button);
+	if (GRAPHIC.copy__settings_button)
+		sfSprite_destroy(GRAPHIC.copy__settings_button);
+	if (GRAPHIC.copy___settings_button)
+		sfSprite_destroy(GRAPHIC.copy___settings_button);
+	if (GRAPHIC.settings_sound_no_sound)
+		sfSprite_destroy(GRAPHIC.settings_sound_no_sound);
+	if (GRAPHIC.t_settings_sound_no_sound)
+		sfTexture_destroy(GRAPHIC.t_settings_sound_no_sound);
+	if (GRAPHIC.settings_sound_middle)
+		sfSprite_destroy(GRAPHIC.settings_sound_middle);
+	if (GRAPHIC.t_settings_sound_middle)
+		sfTexture_destroy(GRAPHIC.t_settings_sound_middle);
+	if (GRAPHIC.settings_sound_max)
+		sfSprite_destroy(GRAPHIC.settings_sound_max);
+	if (GRAPHIC.t_settings_sound_max)
+		sfTexture_destroy(GRAPHIC.t_settings_sound_max);
+}
+
 
 IS_OK			clean_ressource_and_close(t_game *game, IS_OK nb)
 {
@@ -76,6 +135,7 @@ IS_OK			clean_ressource_and_close(t_game *game, IS_OK nb)
 	clear_system(game);
 	clear_audio(game);
 	clear_graphic_scene_one(game);
+	clear_settings(game);
 	if (game)
 		free(game);
 	return (nb);

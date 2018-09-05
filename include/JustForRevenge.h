@@ -53,6 +53,7 @@ typedef struct		Window
 	int				scene;
 	int				play_or_settings;
 	int				open_settings;
+	int				setting_choice;
 
 }					t_window;
 
@@ -70,6 +71,7 @@ typedef struct		System
 	int				save_clock_sword;
 	int				movement_choice;
 	sfTime			pause;
+	int				volume;
 
 }					t_system;
 
@@ -93,12 +95,43 @@ typedef struct		Graphic
 
 	sfRectangleShape*rectangle;
 	sfTexture		*t_settings;
+	sfText			*settings_sound;
+	sfText			*global_settings;
+	sfText			*settings_resolution;
+	sfText			*settings_fullscreen;
+	sfText			*settings_fps;
+	sfText			*settings_vsync;
+	sfSprite		*settings_bar;
+	sfSprite		*copy_settings_bar;
+	sfSprite		*copy__settings_bar;
+	sfSprite		*copy___settings_bar;
+	sfTexture		*t_settings_bar;
+
+	sfSprite		*copy_sword_bar;
+	sfSprite		*copy__sword_bar;
+	sfSprite		*copy___sword_bar;
+	sfSprite		*test;
+
+	sfSprite		*sword_bar;
+	sfTexture		*t_sword_bar;
+	sfSprite		*check_box;
+	sfTexture		*t_check_box;
+	sfSprite		*copy_check_box;
+	sfSprite		*settings_button;
+	sfTexture		*t_settings_button;
+	sfSprite		*copy_settings_button;
+	sfSprite		*copy__settings_button;
+	sfSprite		*copy___settings_button;
+	sfSprite		*settings_sound_no_sound;
+	sfTexture		*t_settings_sound_no_sound;
+	sfSprite		*settings_sound_middle;
+	sfTexture		*t_settings_sound_middle;
+	sfSprite		*settings_sound_max;
+	sfTexture		*t_settings_sound_max;
 
 	sfSprite		*characters;
 	sfTexture		*t_characters;
 
-	sfSprite		*settings_button;
-	sfTexture		*t_settings_button;
 	sfText			*settings_text;
 
 	sfSprite		*title;
@@ -106,6 +139,7 @@ typedef struct		Graphic
 
 	sfSprite		*sword;
 	sfTexture		*t_sword;
+
 
 }					t_graphic;
 
@@ -146,6 +180,7 @@ typedef struct		GLOBAL_GAME
 
 IS_OK				applySprite(sfSprite**, sfTexture**, char *, int, int b);
 IS_OK				applyMusic(sfMusic **, char*);
+IS_OK				copySprite(sfSprite *, sfSprite **);
 IS_OK				initialize_game_struct(t_game **game);
 IS_OK				create_window(sfRenderWindow**);
 IS_OK				clean_ressource_and_close(t_game *, IS_OK);
@@ -155,8 +190,9 @@ IS_OK				load_settings_page(t_game*);
 IS_OK				load_characters(t_game*);
 IS_OK				display_scene(t_game*);
 IS_OK				move_characters(t_game*, int);
-IS_OK				move_text(sfText*, sfRenderWindow*, int, int);
-IS_OK				move_sprite(sfSprite *, sfRenderWindow *, int, int);
+IS_OK				setPositionText(sfText*, sfRenderWindow*, float, float);
+IS_OK				setPositionSprite(sfSprite *, sfRenderWindow *, float, float);
+IS_OK				moveSprite(sfSprite *, float, float);
 IS_OK				display_settings(t_game*);
 IS_OK				animate_scene_one(t_game *game);
 IS_OK				window_display_and_clear(sfRenderWindow*);

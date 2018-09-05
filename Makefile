@@ -18,12 +18,13 @@ SRC=		main.c										\
 			$(SRC_DIR)move.c							\
 			$(SRC_DIR)move_characters.c					\
 			$(SRC_DIR)window_display_and_clear.c		\
+			$(SRC_DIR)f_copySprite.c					\
 
 OBJ=		$(SRC:.c=.o)
 
 NAME=		JustForRevenge
 
-CFLAGS=		-Wall -Wextra -I ./include/ -l c_graph_prog
+CFLAGS=		-Wall -Wextra -I ./include/ -l c_graph_prog -g3
 
 all:		$(NAME)
 
